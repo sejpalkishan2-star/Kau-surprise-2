@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Kau 💗</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#fff1f5,#f2e7ff,#fff8ee);
+  color:#86415f;
+  overflow:hidden;
+}
+.card{
+  width:90%;
+  max-width:400px;
+  padding:28px 20px;
+  text-align:center;
+  background:#ffffffd9;
+  border:1px solid white;
+  border-radius:28px;
+  box-shadow:0 10px 40px #dba4c544;
+  position:relative;
+  z-index:2;
+}
+h1{color:#c05283;font-size:30px}
+p{line-height:1.7}
+.emoji{font-size:65px;margin:15px}
+button{
+  padding:13px 19px;
+  margin:7px;
+  border:0;
+  border-radius:25px;
+  background:#e99cbe;
+  color:white;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:hover{background:#d77eaa}
+.page{display:none}
+.page.active{display:block}
+.heart{
+  position:fixed;
+  bottom:-30px;
+  animation:float 9s linear infinite;
+  opacity:.55;
+  z-index:1;
+  pointer-events:none;
+}
+@keyframes float{
+  to{transform:translateY(-115vh) rotate(30deg);opacity:0}
+}
+.note{
+  background:#fff6fa;
+  padding:15px;
+  border-radius:18px;
+  text-align:left;
+}
+</style>
+</head>
+
+<body>
+
+<div id="hearts"></div>
+
+<div class="card">
+
+<div class="page active" id="p1">
+  <div class="emoji">🌷🧸</div>
+  <h1>Hey Kau! 💗</h1>
+  <p>Meri pagli, tumhare liye ek chhota sa surprise hai! 🥹</p>
+  <button onclick="show(2)">Surprise kholo 🎁</button>
+</div>
+
+<div class="page" id="p2">
+  <div class="emoji" id="gift">🎁</div>
+  <h1>Tumhara gift! 💝</h1>
+  <p>Is gift ki price nahi hai, kyunki ye dil se banaya hai. ❤️</p>
+  <button onclick="show(3)">Aage dekho 💌</button>
+</div>
+
+<div class="page" id="p3">
+  <div class="emoji">😏💗</div>
+  <h1>Kau Madam!</h1>
+  <p>Apne boyfriend ko kitna miss karti ho? 🥹</p>
+  <button onclick="reply('Awww! Ek virtual hug lo 🤗💗')">Bahut saara ❤️</button>
+  <button onclick="reply('Achha ji, itna attitude! 😜🌷')">Nahi bataungi 😌</button>
+  <p id="answer"></p>
+  <button onclick="show(4)">Last surprise 💌</button>
+</div>
+
+<div class="page" id="p4">
+  <div class="emoji">💌🌸</div>
+  <h1>For You, Kau</h1>
+  <div class="note">
+    <p>Meri Kau, ❤️</p>
+    <p>Sorry toh bol diya, lekin tumhe special feel karwana bhi chahta tha.</p>
+    <p>Main perfect nahi hoon, lekin apni galti samajhkar behtar banne ki koshish karunga.</p>
+    <p>Door rehkar bhi tum mere liye bahut special ho. Ye chhota sa surprise sirf tumhari smile ke liye hai. 🥹🌷</p>
+    <p><b>— Tumhara pagal ❤️</b></p>
+  </div>
+  <button onclick="celebrate()">Smile aa gayi? 😊</button>
+  <p id="end"></p>
+  <button onclick="show(1)">Phir se dekho ↻</button>
+</div>
+
+</div>
+
+<script>
+function show(n){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById('p'+n).classList.add('active');
+ if(n===2){
+   document.getElementById('gift').textContent='🎀💝';
+ }
+}
+function reply(text){
+ document.getElementById('answer').textContent=text;
+ celebrate();
+}
+function celebrate(){
+ document.getElementById('end').textContent='Yay! Tumhari smile hi mera favourite gift hai 💗🌷';
+ for(let i=0;i<12;i++){
+   let h=document.createElement('div');
+   h.textContent=['💗','🌸','✨','💕'][i%4];
+   h.style.position='fixed';
+   h.style.left=Math.random()*95+'vw';
+   h.style.top=Math.random()*90+'vh';
+   h.style.fontSize='25px';
+   h.style.zIndex='10';
+   document.body.appendChild(h);
+   setTimeout(()=>h.remove(),1500);
+ }
+}
+for(let i=0;i<20;i++){
+ let h=document.createElement('div');
+ h.className='heart';
+ h.textContent=['♡','🌸','💗','✨'][i%4];
+ h.style.left=Math.random()*100+'vw';
+ h.style.animationDelay=Math.random()*8+'s';
+ h.style.fontSize=(15+Math.random()*20)+'px';
+ document.getElementById('hearts').appendChild(h);
+}
+</script>
+
+</body>
+</html>
